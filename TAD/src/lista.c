@@ -1,6 +1,7 @@
 // Implementação do TAD
 #include <stdio.h> // < > diretório padrão do C
 #include <stdlib.h>
+#include <time.h>
 #include "lista.h" // "" diretório corrente que eu estou
 
 long *gera_vetor(long modo, long tam){
@@ -42,7 +43,7 @@ void destroi(lista *l){
     l->ordenado = 0;
 }
 
-int insere(lista *l, elem x){
+long insere(lista *l, elem x){
     if(l->tamanho == TAM){
         return 1; // erro, lista cheia
     }
@@ -80,12 +81,12 @@ void ordena_bubble_sort(lista *l){
 
 void ordenacao_bubble_sort_aprimorado(lista *l){
     long continua = 1, iteracao = 1;
-    int aux;
+    long aux;
 
     while(continua)
     {
         continua = 0;
-        for(int j = 0; j < l->tamanho - iteracao; j++)
+        for(long j = 0; j < l->tamanho - iteracao; j++)
         {
             if(l->elementos[j] > l->elementos[j+1]){
                 aux = l->elementos[j];
@@ -97,14 +98,14 @@ void ordenacao_bubble_sort_aprimorado(lista *l){
         iteracao++;
     }
 
-    for(int i = 0; i < l->tamanho; i++)
+    for(long i = 0; i < l->tamanho; i++)
          printf("%d ", l->elementos[i]);
 
 }
 
-void quick_sort_semduplicatas_recursivo(int vet[], int ini, int fim){
-    int i, j, meio;
-    int pivo, aux;
+void quick_sort_semduplicatas_recursivo(long vet[], long ini, long fim){
+    long i, j, meio;
+    long pivo, aux;
 
     if(ini < fim){
         meio = (ini+fim) / 2;
@@ -130,46 +131,46 @@ void quick_sort_semduplicatas_recursivo(int vet[], int ini, int fim){
     }
 }
 
-void quick_sort_semduplicatas(int vet[], long tam){
+void quick_sort_semduplicatas(long vet[], long tam){
     return quick_sort_semduplicatas_recursivo(vet, 0, tam-1);
 }
  
-void counting_sort(int A[], int tam, int posicao){
+void counting_sort(long A[], long tam, long posicao){
 
-    int B[10] = {0};
-    int key;
+    long B[10] = {0};
+    long key;
 
-    for (int i = 0; i < tam-1; i++){
+    for (long i = 0; i < tam-1; i++){
 
         key = A[i]/posicao;
         key = key % 10;
         B[key] += 1;
     }
 
-    for (int i = 1; i <= 9; i++)
+    for (long i = 1; i <= 9; i++)
         B[i] += B[i-1];
 
-    int C[tam];
-    for (int i = tam-1; i >= 0; i--){
+    long C[tam];
+    for (long i = tam-1; i >= 0; i--){
         key = A[i]/posicao;
         key = key % 10;
         B[key] -= 1;
         C[B[key]]= A[i];
     }
 
-    for(int i = 0; i < tam-1; i++)
+    for(long i = 0; i < tam-1; i++)
         A[i] = C[i];
 
     return;
 }
 
-void radix_sort(int vet[], int tam){ //tam é o número de elementos da lista
+void radix_sort(long vet[], long tam){ //tam é o número de elementos da lista
 
-    int maior = -1; //detectando o maior elemento do array
-    for(int i = 0; i < tam-1; i++)
+    long maior = -1; //detectando o maior elemento do array
+    for(long i = 0; i < tam-1; i++)
         if(vet[i] > maior) maior = vet[i];
     
-    int posicao = 1; 
+    long posicao = 1; 
     while (maior/posicao > 0){
 
         counting_sort(vet, tam, posicao);
@@ -178,4 +179,4 @@ void radix_sort(int vet[], int tam){ //tam é o número de elementos da lista
 
 }
 
-void heap_sort(int vet[], int tam){
+//void heap_sort(long vet[], long tam){

@@ -7,16 +7,16 @@
 #include "lista.h"
 
 int main(){
-    // clock_t é um long int que vai medir quantos clocks / ciclos q o processador faz por segundo. Ex.: 2,5GHz
+    // clock_t é um long long que vai medir quantos clocks / ciclos q o processador faz por segundo. Ex.: 2,5GHz
     lista l;
     clock_t tempo_ini, soma_tempos; // guarda em certos momentos quantos ciclos do processador ocorreram desde que liguei a máquina
 
     // Considera listas de tamanho cada vez maiores
-    for(int ordem = 3; pow(10, ordem) <= TAM; ordem++) // Número de elementos do vetor será no máximo o tamanho max estipulado (TAM)
+    for(long ordem = 3; pow(10, ordem) <= TAM; ordem++) // Número de elementos do vetor será no máximo o tamanho max estipulado (TAM)
     {
         soma_tempos = 0;
         // faz varias rodadas independentes
-        for(int i = 0; i < REP; i++)
+        for(long i = 0; i < REP; i++)
         {
             // nova lista
             cria(&l);

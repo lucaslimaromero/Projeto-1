@@ -3,14 +3,14 @@
 #define TAM 10
 
 // Define o tipo de elemento dos vetores
-typedef int elem;
+typedef long elem;
 
 // Define a estrutura basica da TAD
 typedef struct{
     elem *elementos; // vetor de dados
     elem *copia; // lista auxiliar para usar na ordenacao merge
     long tamanho; // tamanho atual
-    int ordenado;
+    long ordenado;
 } lista;
 
 // Funcao que gera vetores de acordo com o modo escolhido
@@ -23,7 +23,7 @@ void cria(lista *l);
 void destroi(lista *l);
 
 // Funcao que insere elemento na lista
-int insere(lista *l, elem x);
+long insere(lista *l, elem x);
 
 // Funcao que imprime a lista
 void imprime(lista *l);
@@ -37,7 +37,7 @@ void ordena_bubble_sort(lista *l);
 void ordenacao_bubble_sort_aprimorado(lista *l);
 
 // Quick Sort
-void quick_sort_semduplicatas(int vet[], long tam);
+void quick_sort_semduplicatas(long vet[], long tam);
 
 // Radix Sort
-void radix_sort(int vet[], int tam);
+void radix_sort(long vet[], long tam);
