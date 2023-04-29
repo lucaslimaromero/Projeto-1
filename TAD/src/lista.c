@@ -60,15 +60,15 @@ void imprime(lista *l){
     else{
         printf("(");
         for(i = 0; i < l->tamanho - 1; i++)
-            printf("%d, ", l->elementos[i]);
-        printf("%d)\n",  l->elementos[i]);
+            printf("%ld, ", l->elementos[i]);
+        printf("%ld)\n",  l->elementos[i]);
     } 
 }
 
 void ordena_bubble_sort(lista *l){
     elem aux;
     for(long i = 0; i < l->tamanho - 1; i++){
-        for(long j = 0; j < l->tamanho - i; j++){
+        for(long j = 0; j < l->tamanho - 1; j++){
             if(l->elementos[j] > l->elementos[j + 1]){
                 // faz a troca
                 aux = l->elementos[j];
@@ -98,8 +98,6 @@ void ordenacao_bubble_sort_aprimorado(lista *l){
         iteracao++;
     }
 
-    for(long i = 0; i < l->tamanho; i++)
-         printf("%d ", l->elementos[i]);
 
 }
 
@@ -131,7 +129,7 @@ void quick_sort_semduplicatas_recursivo(long vet[], long ini, long fim){
     }
 }
 
-void quick_sort_semduplicatas(long vet[], long tam){
+void ordena_quick_sort(long vet[], long tam){
     return quick_sort_semduplicatas_recursivo(vet, 0, tam-1);
 }
  
@@ -164,7 +162,7 @@ void counting_sort(long A[], long tam, long posicao){
     return;
 }
 
-void radix_sort(long vet[], long tam){ //tam é o número de elementos da lista
+void ordena_radix_sort(long vet[], long tam){ //tam é o número de elementos da lista
 
     long maior = -1; //detectando o maior elemento do array
     for(long i = 0; i < tam-1; i++)

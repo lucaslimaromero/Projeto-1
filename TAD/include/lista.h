@@ -1,6 +1,6 @@
 // -------------- HEADER do TAD --------------
 
-#define TAM 10
+#define TAM 100000
 
 // Define o tipo de elemento dos vetores
 typedef long elem;
@@ -37,7 +37,7 @@ void ordena_bubble_sort(lista *l);
 void ordenacao_bubble_sort_aprimorado(lista *l);
 
 // Quick Sort
-void quick_sort_semduplicatas(long vet[], long tam);
+void ordena_quick_sort(long vet[], long tam);
 
 // Radix Sort
-void radix_sort(long vet[], long tam);
+void ordena_radix_sort(long vet[], long tam);
