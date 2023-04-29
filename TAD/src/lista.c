@@ -3,6 +3,30 @@
 #include <stdlib.h>
 #include "lista.h" // "" diretório corrente que eu estou
 
+long *gera_vetor(long modo, long tam){
+
+    long *vetor = (long*) malloc(sizeof(long) * tam);
+    if (modo == 1){ // modo aleatorio 
+
+        srand(time(NULL));
+
+        for(long i = 0; i < tam; i++)
+            vetor[i] = rand() % 10000;
+    }
+
+    else if (modo == 2){ // ordenado
+        for(long i = 0; i < tam; i++)
+            vetor[i] = i+1;
+    }
+
+    else if (modo == 3){ // decrescente
+        for(long i = 0; i < tam; i++)
+            vetor[i] = tam-i;
+    }
+
+    return vetor;
+}
+
 void cria(lista *l){
     l->tamanho = 0;
     l->copia = malloc(sizeof(elem)*TAM);
@@ -106,7 +130,7 @@ void quick_sort_semduplicatas_recursivo(int vet[], int ini, int fim){
     }
 }
 
-void quick_sort_semduplicatas(int vet[], int tam){
+void quick_sort_semduplicatas(int vet[], long tam){
     return quick_sort_semduplicatas_recursivo(vet, 0, tam-1);
 }
  

@@ -13,6 +13,9 @@ typedef struct{
     int ordenado;
 } lista;
 
+// Funcao que gera vetores de acordo com o modo escolhido
+long *gera_vetor(long modo, long tam);
+
 // Funcao que cria lista
 void cria(lista *l);
 
@@ -25,7 +28,7 @@ int insere(lista *l, elem x);
 // Funcao que imprime a lista
 void imprime(lista *l);
 
-// -------------- Metodos de ordenacao --------------
+// -------------- Metodos de ordenacao -------------- //
 
 // Bubble Sort Normal 
 void ordena_bubble_sort(lista *l);
@@ -34,7 +37,7 @@ void ordena_bubble_sort(lista *l);
 void ordenacao_bubble_sort_aprimorado(lista *l);
 
 // Quick Sort
-void quick_sort_semduplicatas(lista *l);
+void quick_sort_semduplicatas(int vet[], long tam);
 
 // Radix Sort
 void radix_sort(int vet[], int tam);
