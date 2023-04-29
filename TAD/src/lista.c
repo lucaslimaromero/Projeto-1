@@ -110,3 +110,48 @@ void quick_sort_semduplicatas(int vet[], int tam){
     return quick_sort_semduplicatas_recursivo(vet, 0, tam-1);
 }
  
+void counting_sort(int A[], int tam, int posicao){
+
+    int B[10] = {0};
+    int key;
+
+    for (int i = 0; i < tam-1; i++){
+
+        key = A[i]/posicao;
+        key = key % 10;
+        B[key] += 1;
+    }
+
+    for (int i = 1; i <= 9; i++)
+        B[i] += B[i-1];
+
+    int C[tam];
+    for (int i = tam-1; i >= 0; i--){
+        key = A[i]/posicao;
+        key = key % 10;
+        B[key] -= 1;
+        C[B[key]]= A[i];
+    }
+
+    for(int i = 0; i < tam-1; i++)
+        A[i] = C[i];
+
+    return;
+}
+
+void radix_sort(int vet[], int tam){ //tam é o número de elementos da lista
+
+    int maior = -1; //detectando o maior elemento do array
+    for(int i = 0; i < tam-1; i++)
+        if(vet[i] > maior) maior = vet[i];
+    
+    int posicao = 1; 
+    while (maior/posicao > 0){
+
+        counting_sort(vet, tam, posicao);
+        posicao *= 10;
+    }
+
+}
+
+void heap_sort(int vet[], int tam){

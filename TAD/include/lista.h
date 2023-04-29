@@ -35,3 +35,6 @@ void ordenacao_bubble_sort_aprimorado(lista *l);
 
 // Quick Sort
 void quick_sort_semduplicatas(lista *l);
+
+// Radix Sort
+void radix_sort(int vet[], int tam);
