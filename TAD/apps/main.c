@@ -1,4 +1,4 @@
-#define REP 5 // numero de vezes que vou rodar meu codigo pra pegar um tempo medio
+#define REP 10 // numero de vezes que vou rodar meu codigo pra pegar um tempo medio
 
 #include <stdio.h>
 #include <stdlib.h>
