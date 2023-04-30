@@ -1,6 +1,13 @@
 // -------------- HEADER do TAD --------------
+#ifndef LISTA_H
+#define LISTA_H
 
 #define TAM 1000000
+
+#include <stdio.h>   // < > diretório padrão do C
+#include <stdlib.h>  // 
+#include <time.h>    // 
+#include <math.h>    // 
 
 // Define o tipo de elemento dos vetores
 typedef long elem;
@@ -44,3 +51,6 @@ void ordena_radix_sort(lista *l);
 
 // Heap Sort
 void ordena_heap_sort(lista *l);
+
+
+#endif

@@ -1,10 +1,8 @@
-#define REP 10 // numero de vezes que vou rodar meu codigo pra pegar um tempo medio
+#define REP 10 // Numero de repeticoes para calcular o tempo medio de execucao
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <math.h>
-#include <time.h> // para medir o tempo de cada execucao de ordenacao, para fazer medicao de tempo usaremos os ciclos do nosso processador
+// ------- TAD ------- //
 #include "lista.h"
+
 
 void bubble_sort(lista *l, int modo){
 
@@ -180,9 +178,11 @@ void heap_sort(lista *l, int modo){
 }
 
 int main(){
-    
+
     lista *l;
 
+    // cada funcao eh chamada tres vezes, uma para cada tipo de vetor
+    // a unica diferenca entre elas eh o algoritmo de ordenacao utilizado
     
     printf("\tBubble Sort\n\n");
     for (int i = 1; i <= 3; i++)
@@ -203,6 +203,7 @@ int main(){
     printf("\n\tHeap Sort\n\n");
     for (int i = 1; i <= 3; i++)
         heap_sort(l, i);
+    
 
     return 0;
 }

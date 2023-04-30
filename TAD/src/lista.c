@@ -1,12 +1,12 @@
 // Implementação do TAD
-#include <stdio.h> // < > diretório padrão do C
-#include <stdlib.h>
-#include <time.h>
+
 #include "lista.h" // "" diretório corrente que eu estou
 
+// Funcao que gera vetores de acordo com o modo escolhido
 long *gera_vetor(long modo, long tam){
 
     long *vetor = (long*) malloc(sizeof(long) * tam);
+    
     if (modo == 1){ // modo aleatorio 
 
         srand(time(NULL));
@@ -67,8 +67,10 @@ void imprime(lista *l){
 
 void ordena_bubble_sort(lista *l){
     elem aux;
+
     for(long i = 0; i < l->tamanho - 1; i++){
         for(long j = 0; j < l->tamanho - 1; j++){
+
             if(l->elementos[j] > l->elementos[j + 1]){
                 // faz a troca
                 aux = l->elementos[j];
@@ -80,25 +82,25 @@ void ordena_bubble_sort(lista *l){
 }
 
 void ordena_bubble_sort_aprimorado(lista *l){
+
     long continua = 1, iteracao = 1;
     long aux;
 
-    while(continua)
-    {
-        continua = 0;
-        for(long j = 0; j < l->tamanho - iteracao; j++)
-        {
+    while(continua){ // se nao houve mudanca, o vetor esta ordenado, encerra execucao
+    
+        continua = 0; // Flag para saber se houve mudanca na passagem
+        for(long j = 0; j < l->tamanho - iteracao; j++){
+
             if(l->elementos[j] > l->elementos[j+1]){
+
                 aux = l->elementos[j];
                 l->elementos[j] = l->elementos[j+1];
                 l->elementos[j+1] = aux;
-                continua = 1;
+                continua = 1; // mudanca aconteceu 
             }
         }
         iteracao++;
     }
-
-
 }
 
 void ordena_quick_sort_recursivo(elem A[], long ini, long fim) {
@@ -138,6 +140,8 @@ void ordena_quick_sort(lista *l) {
  
 void counting_sort(elem A[], long posicao, long tam){
 
+    // codigo escrito com base no pseudocodigo apresentado pelo professor
+
     int B[10] = {0};
     long key;
 
@@ -165,22 +169,25 @@ void counting_sort(elem A[], long posicao, long tam){
 
         A[i] = C[i];
     }
-
-
 }
 
-void ordena_radix_sort(lista *l){ //tam é o número de elementos da lista
+void ordena_radix_sort(lista *l){
 
     long maior = l->elementos[0]; //detectando o maior elemento do array
     for (long i = 1; i <= l->tamanho - 1; i++)
         if(l->elementos[i] > maior) maior = l->elementos[i];
 
+    // A funcao counting_sort eh chamada D vezes, sendo D o numero 
+    //de digitos do maior elemento presente no array
     for (long posicao = 1; maior / posicao > 0; posicao *= 10)
         counting_sort(l->elementos, posicao, l->tamanho);
 
 }
 
 void heapify(elem A[], long n, long i){
+
+    // codigo escrito com base no pseudocodigo apresentado pelo professor
+
     long maior = i;
     long esquerda = (2 * i) + 1;
     long direita = (2 * i) + 2;
@@ -188,9 +195,11 @@ void heapify(elem A[], long n, long i){
     if(esquerda < n && A[esquerda] > A[maior]){
         maior = esquerda;
     }
+
     if(direita < n && A[direita] > A[maior]){
         maior = direita;
     }
+    
     if(maior != i){
         //swap(A[i],l->[maior]);
         long aux = A[i];
@@ -201,9 +210,11 @@ void heapify(elem A[], long n, long i){
 }
 
 void ordena_heap_sort(lista *l){
+
     for (long i = (l->tamanho / 2) - 1; i >= 0; i--){
         heapify(l->elementos, l->tamanho, i);
     }
+
     for (long i = l->tamanho - 1; i >= 0; i--){
         //swap(l->elementos[0],l->elementos[i]);
         long temp = l->elementos[0];
