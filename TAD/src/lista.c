@@ -12,7 +12,7 @@ long *gera_vetor(long modo, long tam){
         srand(time(NULL));
 
         for(long i = 0; i < tam; i++)
-            vetor[i] = rand() % 10000;
+            vetor[i] = rand() % 100000;
     }
 
     else if (modo == 2){ // ordenado
@@ -79,7 +79,7 @@ void ordena_bubble_sort(lista *l){
     }
 }
 
-void ordenacao_bubble_sort_aprimorado(lista *l){
+void ordena_bubble_sort_aprimorado(lista *l){
     long continua = 1, iteracao = 1;
     long aux;
 
@@ -101,80 +101,114 @@ void ordenacao_bubble_sort_aprimorado(lista *l){
 
 }
 
-void quick_sort_semduplicatas_recursivo(long vet[], long ini, long fim){
-    long i, j, meio;
-    long pivo, aux;
-
-    if(ini < fim){
-        meio = (ini+fim) / 2;
-        pivo = vet[meio];
-
-        i = ini;
-        j = fim;
-        while(1){
-            for(; vet[i] < pivo; i++);
-
-            for(; vet[j] > pivo; j--);
-
-            if(i == j)
-                break;
-
-            aux = vet[i];
-            vet[i] = vet[j];
-            vet[j] = aux;
+void ordena_quick_sort_recursivo(elem A[], long ini, long fim) {
+    // quick sort com particionamento de Lomuto (permite duplicatas)
+    // pivô fica sempre no final, l->elementos[fim]
+    long i, j;
+    elem aux;
+    
+    if (ini >= fim)
+        return; // caso trivial, vetor nulo ou unitario
+    
+    // particiona vetor
+    i = ini;
+    for (j = ini; j < fim; j++)
+        if (A[j] < A[fim]) { // testa se o elemento da j-esima posicao eh menor do que o pivo
+            // troca A[i] com A[j]
+            aux = A[i];
+            A[i] = A[j];
+            A[j] = aux;
+            
+            i++; // novo elemento menor do que o pivo foi encontrado
         }
-
-        quick_sort_semduplicatas_recursivo(vet, ini, i-1);
-        quick_sort_semduplicatas_recursivo(vet, i+1, fim);
-    }
+    
+    // coloca o pivo no lugar correto
+    // basta trocar A[i] com A[fim]
+    aux = A[i];
+    A[i] = A[fim];
+    A[fim] = aux;
+    
+    ordena_quick_sort_recursivo(A, ini, i - 1); // metade inferior
+    ordena_quick_sort_recursivo(A, i + 1, fim); // metade superior
 }
 
-void ordena_quick_sort(long vet[], long tam){
-    return quick_sort_semduplicatas_recursivo(vet, 0, tam-1);
+void ordena_quick_sort(lista *l) {
+    ordena_quick_sort_recursivo(l->elementos, 0, l->tamanho - 1); // inicia recursividade
 }
  
-void counting_sort(long A[], long tam, long posicao){
+void counting_sort(long A[], long posicao, long tam){
 
-    long B[10] = {0};
+    int B[10] = {0};
     long key;
 
-    for (long i = 0; i < tam-1; i++){
+    for (long i = 0; i <= tam-1; i++){
 
-        key = A[i]/posicao;
+        key = A[i] / posicao;
         key = key % 10;
         B[key] += 1;
     }
-
-    for (long i = 1; i <= 9; i++)
+    
+    for (long i = 1; i < 10; i++)
         B[i] += B[i-1];
 
     long C[tam];
+
     for (long i = tam-1; i >= 0; i--){
+
         key = A[i]/posicao;
         key = key % 10;
         B[key] -= 1;
-        C[B[key]]= A[i];
+        C[B[key]] = A[i];
     }
 
-    for(long i = 0; i < tam-1; i++)
+    for (long i = 0; i <= tam-1; i++){
+
         A[i] = C[i];
-
-    return;
-}
-
-void ordena_radix_sort(long vet[], long tam){ //tam é o número de elementos da lista
-
-    long maior = -1; //detectando o maior elemento do array
-    for(long i = 0; i < tam-1; i++)
-        if(vet[i] > maior) maior = vet[i];
-    
-    long posicao = 1; 
-    while (maior/posicao > 0){
-
-        counting_sort(vet, tam, posicao);
-        posicao *= 10;
     }
 
+
 }
 
-//void heap_sort(long vet[], long tam){
+void ordena_radix_sort(lista *l){ //tam é o número de elementos da lista
+
+    long maior = l->elementos[0]; //detectando o maior elemento do array
+    for (long i = 1; i <= l->tamanho - 1; i++)
+        if(l->elementos[i] > maior) maior = l->elementos[i];
+
+    for (long posicao = 1; maior / posicao > 0; posicao *= 10)
+        counting_sort(l->elementos, posicao, l->tamanho);
+
+}
+
+void heapify(lista *l,int n,int i){
+    int maior = i;
+    int esquerda = (2*i)+1;
+    int direita = (2*i)+2;
+
+    if(esquerda < n && l->elementos[esquerda] > l->elementos[maior]){
+        maior = esquerda;
+    }
+    if(direita < n && l->elementos[direita] > l->elementos[maior]){
+        maior = direita;
+    }
+    if(maior != i){
+        //swap(l->elementos[i],l->[maior]);
+        int aux = l->elementos[i];
+        l->elementos[i] = l->elementos[maior];
+        l->elementos[maior] = aux; 
+        heapify(l, l->tamanho, maior);
+    }
+}
+
+void ordena_heap_sort(lista *l){
+    for(int i=(l->tamanho/2)-1;i>=0;i--){
+        heapify(l, l->tamanho, i);
+    }
+    for(int i=l->tamanho-1; i>=0;i--){
+        //swap(l->elementos[0],l->elementos[i]);
+        int temp = l->elementos[0];
+        l->elementos[0] = l->elementos[i];
+        l->elementos[i] = temp;
+        heapify(l, i, 0);
+    }
+}
