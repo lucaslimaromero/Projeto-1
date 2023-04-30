@@ -136,7 +136,7 @@ void ordena_quick_sort(lista *l) {
     ordena_quick_sort_recursivo(l->elementos, 0, l->tamanho - 1); // inicia recursividade
 }
  
-void counting_sort(long A[], long posicao, long tam){
+void counting_sort(elem A[], long posicao, long tam){
 
     int B[10] = {0};
     long key;
@@ -180,35 +180,35 @@ void ordena_radix_sort(lista *l){ //tam é o número de elementos da lista
 
 }
 
-void heapify(lista *l,int n,int i){
-    int maior = i;
-    int esquerda = (2*i)+1;
-    int direita = (2*i)+2;
+void heapify(elem A[], long n, long i){
+    long maior = i;
+    long esquerda = (2 * i) + 1;
+    long direita = (2 * i) + 2;
 
-    if(esquerda < n && l->elementos[esquerda] > l->elementos[maior]){
+    if(esquerda < n && A[esquerda] > A[maior]){
         maior = esquerda;
     }
-    if(direita < n && l->elementos[direita] > l->elementos[maior]){
+    if(direita < n && A[direita] > A[maior]){
         maior = direita;
     }
     if(maior != i){
-        //swap(l->elementos[i],l->[maior]);
-        int aux = l->elementos[i];
-        l->elementos[i] = l->elementos[maior];
-        l->elementos[maior] = aux; 
-        heapify(l, l->tamanho, maior);
+        //swap(A[i],l->[maior]);
+        long aux = A[i];
+        A[i] = A[maior];
+        A[maior] = aux; 
+        heapify(A, n, maior);
     }
 }
 
 void ordena_heap_sort(lista *l){
-    for(int i=(l->tamanho/2)-1;i>=0;i--){
-        heapify(l, l->tamanho, i);
+    for (long i = (l->tamanho / 2) - 1; i >= 0; i--){
+        heapify(l->elementos, l->tamanho, i);
     }
-    for(int i=l->tamanho-1; i>=0;i--){
+    for (long i = l->tamanho - 1; i >= 0; i--){
         //swap(l->elementos[0],l->elementos[i]);
-        int temp = l->elementos[0];
+        long temp = l->elementos[0];
         l->elementos[0] = l->elementos[i];
         l->elementos[i] = temp;
-        heapify(l, i, 0);
+        heapify(l->elementos, i, 0);
     }
 }
