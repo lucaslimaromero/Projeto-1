@@ -1,9 +1,11 @@
-#define REP 10 // Numero de repeticoes para calcular o tempo medio de execucao
-
 // ------- TAD ------- //
 #include "lista.h"
 
+#define REP 10 // Numero de repeticoes para calcular o tempo medio de execucao
 
+
+// cada funcao dessas recebe um modo, que diz respeito ao tipo de vetor utilizado
+// nelas serao calculados os tempos de execucao
 void bubble_sort(lista *l, int modo){
 
     printf("\t--- Modo %d ---\n", modo);
@@ -203,6 +205,7 @@ int main(){
     printf("\n\tHeap Sort\n\n");
     for (int i = 1; i <= 3; i++)
         heap_sort(l, i);
+    
 
     return 0;
 }
