@@ -119,11 +119,12 @@ void radix_sort(lista *l, int modo){
 
     printf("\t--- Modo %d ---\n", modo);
 
-    clock_t tempo_ini, soma_tempos; // guarda em certos momentos quantos ciclos do processador ocorreram desde que liguei a máquina
+    clock_t tempo_ini, tempo; // guarda em certos momentos quantos ciclos do processador ocorreram desde que liguei a máquina
 
-    for (long ordem = 3; pow(10, ordem) <= TAM; ordem++) // Numero de elementos do vetor, de 1000 ate TAM
-    {
-        soma_tempos = 0;
+    for (long ordem = 3; pow(10, ordem) <= 100001; ordem++) // Numero de elementos do vetor, de 1000 ate TAM
+    {   
+        double array_tempos[REP];
+
         // faz varias rodadas independentes
         for(long i = 0; i < REP; i++)
         {
@@ -134,17 +135,21 @@ void radix_sort(lista *l, int modo){
             l->elementos = gera_vetor(modo, pow(10, ordem));
             l->tamanho = pow(10, ordem);
             //imprime(l); // imprime antes de ordenar
-
+            //puts("1");
             // ordena e guarda o tempo gasto numa soma
             tempo_ini = clock(); // Guarda tempo atual
-            ordena_radix_sort(l);// chama funcao que ordena
-            soma_tempos += clock() - tempo_ini; // guarda tempo decorrido desta rodada adicionando-o à soma
-
-            
+            ordena_radix_sort(l); // chama funcao que ordena
+            tempo = clock() - tempo_ini;// salva o tempo de duracao do ciclo
+           
+            array_tempos[i] = (double)tempo/CLOCKS_PER_SEC; // guarda os tempos em um array
             //imprime(l); // imprime apos ordenar
             destroi(l);
         }
-        printf("Tamanho da entrada: %0.0f\tTempo medio: %0.10fs\n", pow(10, ordem), ((float) soma_tempos / REP) / CLOCKS_PER_SEC); // CLOCKS_PER_SEC é uma constante que diz a razão clock por segundo
+
+        double x = media(array_tempos, REP);
+        double DP = desvio_padrao(array_tempos, REP, x);
+
+        printf("Tamanho da entrada: %.0f\tTempo medio: %0.10fs\tDesvio padrao: %0.10f\n", pow(10, ordem), x, DP); // CLOCKS_PER_SEC é uma constante que diz a razão clock por segundo
     }
     puts("");
 }
