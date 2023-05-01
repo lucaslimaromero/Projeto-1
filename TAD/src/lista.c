@@ -46,7 +46,6 @@ double desvio_padrao(double A[], int n, double media){
         soma += pow((media - (double)A[i]), 2);
     
     return sqrt(soma/n);
-
 }
 
 void cria(lista *l){

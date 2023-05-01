@@ -12,7 +12,7 @@ void bubble_sort(lista *l, int modo){
 
     clock_t tempo_ini, tempo; // guarda em certos momentos quantos ciclos do processador ocorreram desde que liguei a máquina
 
-    for (long ordem = 3; pow(10, ordem) <= 100000; ordem++) // Numero de elementos do vetor, de 1000 ate TAM
+    for (long ordem = 3; pow(10, ordem) <= 100001; ordem++) // Numero de elementos do vetor, de 1000 ate TAM
     {   
         double array_tempos[REP];
 
@@ -31,7 +31,7 @@ void bubble_sort(lista *l, int modo){
             tempo_ini = clock(); // Guarda tempo atual
             ordena_bubble_sort(l); // chama funcao que ordena
             tempo = clock() - tempo_ini;// salva o tempo de duracao do ciclo
-            puts("2");
+           
             array_tempos[i] = (double)tempo/CLOCKS_PER_SEC; // guarda os tempos em um array
             //imprime(l); // imprime apos ordenar
             destroi(l);
@@ -40,7 +40,7 @@ void bubble_sort(lista *l, int modo){
         double x = media(array_tempos, REP);
         double DP = desvio_padrao(array_tempos, REP, x);
 
-        printf("Tamanho da entrada: %.0f\tTempo medio: %0.10fs\t Desvio padrao: %0.10f", pow(10, ordem), x, DP); // CLOCKS_PER_SEC é uma constante que diz a razão clock por segundo
+        printf("Tamanho da entrada: %.0f\tTempo medio: %0.10fs\tDesvio padrao: %0.10f\n", pow(10, ordem), x, DP); // CLOCKS_PER_SEC é uma constante que diz a razão clock por segundo
     }
     puts("");
 }
