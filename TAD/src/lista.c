@@ -28,6 +28,27 @@ long *gera_vetor(long modo, long tam){
     return vetor;
 }
 
+double media(double A[], int n){
+
+    double media = 0;
+
+    for (int i = 0; i < n; i++)
+        media += (double) A[i];
+
+    return media/n;
+}
+
+double desvio_padrao(double A[], int n, double media){
+
+    double soma = 0;
+    
+    for (int i = 0; i < n; i++)
+        soma += pow((media - (double)A[i]), 2);
+    
+    return sqrt(soma/n);
+
+}
+
 void cria(lista *l){
     l->tamanho = 0;
     l->copia = malloc(sizeof(elem)*TAM);

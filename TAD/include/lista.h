@@ -23,6 +23,12 @@ typedef struct{
 // Funcao que gera vetores de acordo com o modo escolhido
 long *gera_vetor(long modo, long tam);
 
+// Funcao que calcula a media de um array
+double media(double A[], int n);
+
+// Funcao que calcula o desvio padrao de um array
+double desvio_padrao(double A[], int n, double media);
+
 // Funcao que cria lista
 void cria(lista *l);
 
