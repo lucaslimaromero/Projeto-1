@@ -1,4 +1,4 @@
-APPS =./apps
+APPS = ./apps
 BIN = ./bin
 INCLUDE = ./include
 OBJ = ./obj
@@ -15,5 +15,5 @@ myapps:
 run:
 	$(BIN)/main
 
-clean:
+clear:
 	rm $(BIN)/* $(OBJ)/*

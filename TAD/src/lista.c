@@ -1,8 +1,15 @@
+/*
+
+Lucas Lima Romero 13676325
+Luciano Gonçalves Lopes Filho 13676520
+Marco Antonio Gaspar Garcia 11833581
+
+*/
+
 // Implementação do TAD
 
-#include "lista.h" // "" diretório corrente que eu estou
+#include "lista.h" // arquivo source
 
-// Funcao que gera vetores de acordo com o modo escolhido
 long *gera_vetor(long modo, long tam){
 
     long *vetor = (long*) malloc(sizeof(long) * tam);
@@ -50,17 +57,13 @@ double desvio_padrao(double A[], int n, double media){
 
 void cria(lista *l){
     l->tamanho = 0;
-    l->copia = malloc(sizeof(elem)*TAM);
     l->elementos = malloc(sizeof(elem)*TAM);
-    l->ordenado = 0;
     return;
 }
 
 void destroi(lista *l){
     free(l->elementos);
-    free(l->copia);
     l->tamanho = 0;
-    l->ordenado = 0;
 }
 
 long insere(lista *l, elem x){
@@ -69,7 +72,6 @@ long insere(lista *l, elem x){
     }
     l->elementos[l->tamanho] = x;
     l->tamanho++;
-    l->ordenado = 0;
     return 0; // sucesso
 }
 

@@ -1,3 +1,11 @@
+/*
+
+Lucas Lima Romero 13676325
+Luciano Gonçalves Lopes Filho 13676520
+Marco Antonio Gaspar Garcia 11833581
+
+*/
+
 // ------- TAD ------- //
 #include "lista.h"
 
@@ -26,7 +34,7 @@ void bubble_sort(lista *l, int modo){
             l->elementos = gera_vetor(modo, pow(10, ordem));
             l->tamanho = pow(10, ordem);
             //imprime(l); // imprime antes de ordenar
-            //puts("1");
+
             // ordena e guarda o tempo gasto numa soma
             tempo_ini = clock(); // Guarda tempo atual
             ordena_bubble_sort(l); // chama funcao que ordena
@@ -65,7 +73,7 @@ void bubble_sort_aprimorado(lista *l, int modo){
             l->elementos = gera_vetor(modo, pow(10, ordem));
             l->tamanho = pow(10, ordem);
             //imprime(l); // imprime antes de ordenar
-            //puts("1");
+
             // ordena e guarda o tempo gasto numa soma
             tempo_ini = clock(); // Guarda tempo atual
             ordena_bubble_sort_aprimorado(l); // chama funcao que ordena
@@ -104,7 +112,7 @@ void quick_sort(lista *l, int modo){
             l->elementos = gera_vetor(modo, pow(10, ordem));
             l->tamanho = pow(10, ordem);
             //imprime(l); // imprime antes de ordenar
-            //puts("1");
+
             // ordena e guarda o tempo gasto numa soma
             tempo_ini = clock(); // Guarda tempo atual
             ordena_quick_sort(l); // chama funcao que ordena
@@ -143,7 +151,7 @@ void radix_sort(lista *l, int modo){
             l->elementos = gera_vetor(modo, pow(10, ordem));
             l->tamanho = pow(10, ordem);
             //imprime(l); // imprime antes de ordenar
-            //puts("1");
+
             // ordena e guarda o tempo gasto numa soma
             tempo_ini = clock(); // Guarda tempo atual
             ordena_radix_sort(l); // chama funcao que ordena
@@ -182,7 +190,7 @@ void heap_sort(lista *l, int modo){
             l->elementos = gera_vetor(modo, pow(10, ordem));
             l->tamanho = pow(10, ordem);
             //imprime(l); // imprime antes de ordenar
-            //puts("1");
+
             // ordena e guarda o tempo gasto numa soma
             tempo_ini = clock(); // Guarda tempo atual
             ordena_heap_sort(l); // chama funcao que ordena
