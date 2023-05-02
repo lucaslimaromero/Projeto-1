@@ -11,9 +11,9 @@ Marco Antonio Gaspar Garcia 11833581
 
 #define REP 10 // Numero de repeticoes para calcular o tempo medio de execucao
 
-
 // cada funcao dessas recebe um modo, que diz respeito ao tipo de vetor utilizado
-// nelas serao calculados os tempos de execucao
+// nelas serao calculados os tempos de execucao 
+
 void bubble_sort(lista *l, int modo){
 
     printf("\t--- Modo %d ---\n", modo);
@@ -137,7 +137,7 @@ void radix_sort(lista *l, int modo){
 
     clock_t tempo_ini, tempo; // guarda em certos momentos quantos ciclos do processador ocorreram desde que liguei a máquina
 
-    for (long ordem = 3; pow(10, ordem) <= TAM; ordem++) // Numero de elementos do vetor, de 1000 ate TAM
+    for (long ordem = 3; (long)pow(10, ordem) <= TAM; ordem++) // Numero de elementos do vetor, de 1000 ate TAM
     {   
         double array_tempos[REP];
 
@@ -148,8 +148,8 @@ void radix_sort(lista *l, int modo){
             cria(l);
 
             // insere elementos aleatorios
-            l->elementos = gera_vetor(modo, pow(10, ordem));
-            l->tamanho = pow(10, ordem);
+            l->elementos = gera_vetor(modo, (long)pow(10, ordem));
+            l->tamanho = (long)pow(10, ordem);
             //imprime(l); // imprime antes de ordenar
 
             // ordena e guarda o tempo gasto numa soma
@@ -165,7 +165,7 @@ void radix_sort(lista *l, int modo){
         double x = media(array_tempos, REP);
         double DP = desvio_padrao(array_tempos, REP, x);
 
-        printf("Tamanho da entrada: %.0f\tTempo medio: %0.10fs\tDesvio padrao: %0.10f\n", pow(10, ordem), x, DP); // CLOCKS_PER_SEC é uma constante que diz a razão clock por segundo
+        printf("Tamanho da entrada: %.0ld\tTempo medio: %0.10fs\tDesvio padrao: %0.10f\n", (long)pow(10, ordem), x, DP); // CLOCKS_PER_SEC é uma constante que diz a razão clock por segundo
     }
     puts("");
 }
@@ -209,6 +209,7 @@ void heap_sort(lista *l, int modo){
     puts("");
 }
 
+
 int main(){
 
     lista *l;
@@ -235,7 +236,6 @@ int main(){
     printf("\n\tHeap Sort\n\n");
     for (int i = 1; i <= 3; i++)
         heap_sort(l, i);
-    
 
     return 0;
 }

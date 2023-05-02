@@ -164,7 +164,7 @@ void counting_sort(elem A[], long posicao, long tam){
 
     // codigo escrito com base no pseudocodigo apresentado pelo professor
 
-    int B[10] = {0};
+    long B[10] = {0};
     long key;
 
     for (long i = 0; i <= tam-1; i++){
@@ -177,7 +177,7 @@ void counting_sort(elem A[], long posicao, long tam){
     for (long i = 1; i < 10; i++)
         B[i] += B[i-1];
 
-    long C[tam];
+    long *C = (long*) malloc(sizeof(long)*tam);
 
     for (long i = tam-1; i >= 0; i--){
 
@@ -191,6 +191,8 @@ void counting_sort(elem A[], long posicao, long tam){
 
         A[i] = C[i];
     }
+
+    free(C);
 }
 
 void ordena_radix_sort(lista *l){
@@ -203,7 +205,7 @@ void ordena_radix_sort(lista *l){
     //de digitos do maior elemento presente no array
     for (long posicao = 1; maior / posicao > 0; posicao *= 10)
         counting_sort(l->elementos, posicao, l->tamanho);
-
+    
 }
 
 void heapify(elem A[], long n, long i){

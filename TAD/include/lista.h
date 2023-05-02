@@ -10,7 +10,7 @@ Marco Antonio Gaspar Garcia 11833581
 #ifndef LISTA_H
 #define LISTA_H
 
-#define TAM 1000000
+#define TAM 100000000
 
 #include <stdio.h>   // < > diretório padrão do C
 #include <stdlib.h>  // 
