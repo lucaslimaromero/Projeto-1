@@ -7,9 +7,10 @@ Marco Antonio Gaspar Garcia 11833581
 
 Olá professor, 
 
+O relatório encontra-se nesta mesma pasta, o arquivo chama-se "arquivo.pdf". 
 Utilizamos Makefile para facilitar a compilação e a execução dos códigos.
 Para compilar o nosso código basta digitar "make" no terminal, e para exe-
-cutar digite "make run". 
+cutar digite "make run".
 
 make
 
