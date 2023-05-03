@@ -216,7 +216,7 @@ int main(){
 
     // cada funcao eh chamada tres vezes, uma para cada tipo de vetor
     // a diferenca entre elas eh o algoritmo de ordenacao utilizado
-    
+
     printf("\tBubble Sort\n\n");
     for (int i = 1; i <= 3; i++)
         bubble_sort(l, i);
@@ -228,7 +228,7 @@ int main(){
     printf("\n\tQuick Sort\n\n");
     for (int i = 1; i <= 3; i++)
         quick_sort(l, i);
-    
+
     printf("\n\tRadix Sort\n\n");
     for (int i = 1; i <= 3; i++)
         radix_sort(l, i);
